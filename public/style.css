@@ -1,0 +1,648 @@
+/*Google Font CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+  *{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   text-decoration: none;
+   }
+  html {
+   scroll-behavior: smooth;
+  }
+
+  /* Custom Scroll Bar CSS */
+  ::-webkit-scrollbar{
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track{
+    background: #F1F1F1;
+  }
+  ::-webkit-scrollbar-thumb{
+    background: #6e93f7;
+    border-radius: 12px;
+  }
+  ::-webkit-scrollbar-thumb:hover{
+    background: #4070F4;
+    border-radius: 12px;
+  }
+
+  /* Navigation Menu CSS */
+  nav{ 
+    position: fixed;
+    width: 100%;
+    padding: 20px 0;
+    font-family: 'Ubuntu', sans-serif;
+    transition: all 0.4s ease;
+    z-index: 998;
+  }
+  nav.sticky{
+    padding: 13px 0;
+    background: #4070F4;
+  }
+  nav .navbar{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+    nav .navbar .logo a{
+        font-size: 40px;
+        font-weight: 500;
+        color: #4070F4;
+    }
+    nav.sticky .navbar .logo a{
+      color: #FFF;
+    }
+    nav .navbar .menu{
+        display: flex;
+    }
+    nav .navbar .menu li{
+        margin: 0 8px;
+        list-style: none;
+    }
+    .navbar .menu li a{
+        font-size: 18px;
+        font-size: 500;
+        color: #0E2431;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu li a:hover{
+      color: #4070F4;
+    }
+    nav.sticky .navbar .menu li a{
+      color: #FFF;
+     }
+    nav.sticky .navbar .menu li a:hover{
+      color: #4070F4;
+    }
+    .navbar .media-icons a{
+        font-size: 18px;
+        margin: 0 6px;
+        color: #4070F4
+    }
+    nav.sticky .navbar .media-icons a{
+      color: #FFF;
+    }
+
+    /* Side Navigation Menu Button CSS */
+    nav .menu-btn,
+    .navbar .cancel-btn{
+      position: absolute;
+      color: #FFF;
+      font-size: 20PX;
+      right: 30px;
+      top: 20px;
+      display: none;
+      cursor: pointer;
+    }
+    nav .menu-btn{
+      color: #4070F4;
+    }
+    nav.sticky .menu-btn{
+      color: #FFF;
+    }
+
+    /* Home Section CSS */
+    .home{
+      height: 100vh;
+      width: 100%;
+      background: url("images/Background.png") no-repeat;
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
+      font-family: 'Ubuntu', sans-serif;
+    }
+    .home .home-content{
+      height: 100%;
+      width: 90%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home .text .text-one{
+      font-size: 25px;
+      color: #0E2431;
+    }
+     .home .text .text-two{
+      font-size: 75px;
+      font-weight: 600;
+      margin-left: -3px;
+      color: #0E2431;
+    }
+     .home .text .text-three{
+      font-size: 40px;
+      color: #0E2431;
+    }
+     .home .text .text-four{
+      font-size: 23px;
+      margin: 5px 0;
+      color: #0E2431;
+    }
+     .home .button{
+      margin: 14px 0;
+     }
+    .home .button button{
+      outline: none;
+      color: #FFF;
+      font-size: 25px;
+      font-weight: 500;
+      padding: 8px 16px;
+      background: #4070F4;
+      border: 2px solid transparent;
+      border-radius: 5px;
+      transition: all 0.4s ease;
+    }
+    .home .button button:hover{
+      color: #4070F4;
+      background-color: #FFF;
+      border-color: #4070F4;
+    }
+
+    /* About Me Section Css */
+    section {
+      padding-top: 40px;
+    }
+    section .content{
+      width: 80%;
+      margin: 40px auto;
+      font-family: 'poppins', sans-serif;
+    }
+    section .title{
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    section .title span{
+      font-size: 30px;
+      font-weight: 600;
+      position: relative;
+    }
+    section .title span::before,
+    section .title span::after{
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background: #4070F4;
+    }
+    section .title span:after{
+      width: 70%;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -7px;
+    }
+    .about .about-details{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .about .about-details .right{
+      width: 45%;
+    }
+    .about .about-details .right img{
+      height: 400px;
+      width: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .about .about-details .left{
+      width: 55%;
+    }
+    section .topic{
+      font-size: 25px;
+      font-weight: 500;
+      color: #0E2431;
+      margin-bottom: 10px;
+    }
+    .about-details .left p{
+      color: #0E2431;
+      text-align: justify;
+    }
+    section .button{
+      margin: 14px 0;
+     }
+    section .button button{
+      outline: none;
+      color: #FFF;
+      font-size: 25px;
+      font-weight: 500;
+      padding: 8px 16px;
+      background: #4070F4;
+      border: 2px solid transparent;
+      border-radius: 5px;
+      transition: all 0.4s ease;
+    }
+    section .button button:hover{
+      color: #4070F4;
+      background-color: #FFF;
+      border-color: #4070F4;
+    }
+
+    /* My Skills CSS */
+    .skills{
+      background: #F0F8FF;
+    }
+    .skills .content{
+      padding: 40px 0;
+    }
+    .skills .skill-details{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .skills .skill-details .left{
+      width: 50%;
+    }
+    .skill-details .left p{
+      text-align: justify;
+    }
+    .skill-details .left .experience{
+      display: flex;
+      align-items: center;
+    }
+    .skill-details .left .experience .num{
+      font-size: 80px;
+      font-weight: 500;
+    }
+    .skill-details .left .experience .exp{
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .skills .skill-details .boxes{
+      width: 45%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .skills .skill-details .boxes .box{
+      width: calc(100% / 2 - 20px);
+    }
+    .skill-details .boxes .box .topic{
+      font-size: 20px;
+      font-weight: 500;
+      color: #4070F4
+    }
+    .skills .skill-details .boxes .box .num{
+      font-size: 60px;
+      font-weight: 500;
+       color: #4070F4
+    }
+
+    /* My Projects Section CSS */
+    .projects .boxes{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+    .projects .boxes .box{
+      width: calc(100% / 3 - 20px);
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      padding: 20px 10px;
+      transition: all 0.4s ease;
+    }
+    .projects .boxes .box:hover{
+      background: #4070F4;
+      color: #FFF;
+    }
+    .projects .boxes .box .icon{
+      height: 50px;
+      width: 50px;
+      color: #FFF;
+      background: #4070F4;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      margin: 0 auto 10px auto;
+      transition: all 0.4s ease;
+    }
+    .projects .boxes .box:hover .icon{
+      background: #FFF;
+      color: #4070F4;
+    }
+    .projects .boxes .box:hover .topic{
+      color: #FFF;
+    }
+    .project-link{
+      display:inline-block;
+      margin-top:10px;
+      padding:6px 12px;
+      background:#4070F4;
+      color:#FFF;
+      border-radius:6px;
+      text-decoration:none;
+      font-size:14px;
+      transition:0.25s;
+    }
+    .project-link:hover{
+      background:#3058c5; transform:translateY(-1px);
+    }
+    .project-link i{
+      margin-right:6px;
+    }
+
+
+    /* Contact Me CSS */
+    .contact{
+      background: #F0F8FF;
+      padding: 20px 0;
+    }
+    .contact .text{
+      text-align: center;
+      margin: auto;
+      width: 80%;
+    }
+
+    /* Fotter CSS */
+    footer{
+      background: #4070F4;
+      text-align: center;
+      padding: 15px 0;
+      font-family: 'poppins', sans-serif;
+    }
+    footer .text span{
+      color: #FFF;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    footer .text span a{
+      color: #FFF;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    footer .text span a:hover{
+      text-decoration: underline;
+    }
+
+    /* Scroll To Top Button CSS */
+    .scroll-btn i{
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 12px;
+      background: #4070F4;
+      color: #FFF;
+      font-size: 18px;
+      border-radius: 6px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Chat Bot CSS */
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 18, 22, 0.55);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 9999;
+    }
+    .overlay.open { display: flex; }
+
+    /* Modal */
+    .modal {
+      width: 100%;
+      max-width: 700px;
+      max-height: 85vh;
+      background: #0f1216;
+      color: #e7eaf0;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      border-radius: 18px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+      animation: pop 180ms ease-out;
+    }
+
+    @keyframes pop {
+      from { transform: translateY(8px) scale(0.98); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 12px;
+      background: transparent;
+      border: none;
+      color: #aab2c0;
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .close-btn:hover { color: #fff; }
+
+    /* Header */
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+    }
+    .chat-header h3 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #22c55e; /* ירוק קטן לחיווי "זמין" */
+      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+    }
+
+    /* Body */
+    .chat-body {
+      padding: 16px;
+      overflow: auto;
+      display: grid;
+      gap: 10px;
+      background:
+        radial-gradient(1200px 400px at 20% -10%, rgba(66,133,244,0.08), transparent 60%),
+        radial-gradient(1200px 400px at 120% 110%, rgba(16,185,129,0.08), transparent 60%),
+        #0f1216;
+    }
+
+    /* Messages */
+    .msg {
+      max-width: 80%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      word-wrap: break-word;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .msg.bot {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .msg.user {
+      justify-self: end;
+      background: #2563eb;
+      border: 1px solid #1d4ed8;
+      color: #fff;
+    }
+
+    /* Input */
+    .chat-input {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+    }
+    .chat-input input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #e7eaf0;
+      outline: none;
+    }
+    .chat-input input::placeholder { color: #96a0b0; }
+    .chat-input input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.25);
+    }
+    .send-btn {
+      padding: 0 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #1f2937;
+      color: #e7eaf0;
+      cursor: not-allowed;
+    }
+    .send-btn.enabled {
+      cursor: pointer;
+      background: #2563eb;
+      border-color: #1d4ed8;
+    }
+
+
+
+    /* Responsive Media Query CSS */
+    @media (max-width: 1190px) {
+      .about .content{
+        width: 85%;
+      }
+      .skills .content{
+        width: 90%;
+      }
+      .projects .content{
+        width: 90%;
+      }
+    }
+    @media (max-width: 1090px) {
+      .about .about-details{
+        flex-direction: column;
+      }
+      .about .about-details .right{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      .about .about-details .left{
+      width: 90%;
+      margin: 40px 0;
+      }
+      .projects .boxes .box{
+        width: calc(100% - 2 -20px);
+      }
+      .contact .text{
+      width: 90%;
+      }
+    }
+
+    @media (max-width: 971px) {
+      .about .about-details .right img{
+        height: 350px;
+        width: 350px;
+      }
+    }
+
+    @media (max-width: 750px) {
+       nav .navbar .menu{
+        position: absolute;
+        left: -100%;
+        top: 0;
+        height: 100vh;
+        max-width: 400px;
+        width: 100%;
+        background: #0E2431;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 60px;
+        transition: all 0.5s ease;
+      }
+       nav .navbar.active .menu{
+        left: 0;
+      }
+      .navbar .menu li a{
+        display: block;
+        margin: 10px 0;
+        font-size: 23px;
+        color: #FFF;
+      }
+      .navbar .media-icons a{
+        display: none;
+      }
+      nav .menu-btn,
+      .navbar .cancel-btn{
+        display: block;
+      }
+      .home .text .text-two{
+        font-size: 65px;
+      }
+      .home .text .text-three{
+        font-size: 35px;
+      }
+      .skills .skill-details{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .skills .skill-details .left{
+        width: 90%;
+      }
+      .skills .skill-details .boxes{
+        width: 90%;
+        margin: 40px 0;
+      }
+      .projects .boxes .box{
+        width: 100%;
+      }
+      .contact .text{
+      width: 100%;
+      }
+    }
+
+    @media (max-width: 510px){
+      .home .text .text-two{
+        font-size: 55px;
+      }
+      .home .text .text-three{
+          font-size: 33px;
+      }
+      .modal { max-height: 92vh; border-radius: 14px; }
+      .msg { max-width: 92%; }
+    }
+
+    
+
+
+  

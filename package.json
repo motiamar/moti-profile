@@ -1,0 +1,16 @@
+{
+  "name": "linkdinbot",
+  "version": "1.0.0",
+  "description": "Moti's interactive profile (Express + static)",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=18" },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
