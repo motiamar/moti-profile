@@ -414,7 +414,7 @@
     .modal {
       width: 100%;
       max-width: 700px;
-      max-height: 85vh;
+      max-height: 85dvh;
       background: #0f1216;
       color: #e7eaf0;
       border: 1px solid rgba(255,255,255,0.08);
