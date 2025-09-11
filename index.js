@@ -60,3 +60,11 @@ if (require.main === module) {
     console.log(answerQuestion(line));
   });
 }
+
+// מחכה שהמקלדת תיפתח
+const input = document.querySelector('.chat-input input');
+input.addEventListener('focus', () => {
+  setTimeout(() => {
+    input.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 300); 
+});
