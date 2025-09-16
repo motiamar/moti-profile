@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { answerQuestion } = require('./index');
+const { answerQuestion, findTopicMatch } = require('./index');
 require('dotenv').config();
 
 // נייבא את הפולבק
@@ -25,25 +25,36 @@ app.post('/ask', async (req, res) => {
 
     // 1) תשובה מקומית (JSON/מנוע פנימי)
     let local = await Promise.resolve(answerQuestion(question));
-    
-    // אם הפונקציה שלך מחזירה מחרוזת — נשאיר כמו שהוא.
     let localText = typeof local === 'string' ? local : local?.text;
 
-    // 2) האם צריך פולבק?
-    // תנאים שמדליקים OpenAI: אין טקסט, ריק, או קוד מיוחד שאתה מחזיר כשאין תשובה.
+    // 2) האם צריך פולבק/שכבה אמצעית
     const needFallback =
       !localText ||
       !localText.trim() ||
       (typeof local === 'object' && (local.confidence === 'low' || local.code === 'NO_LOCAL_ANSWER')) ||
-      /לא מצאתי תשובה|אין לי תשובה/i.test(localText); // עובד גם אם אתה מחזיר הודעת ברירת־מחדל
+      /לא מצאתי תשובה|אין לי תשובה/i.test(localText);
 
     let finalText = localText;
 
+    // 2.5) שכבה אמצעית: אם אין תשובה מקומית אבל יש topic עם מפתח תואם — שולחים ל-AI יחד עם הטקסט של ה-topic
     if (needFallback) {
+      const topic = findTopicMatch(question);
+      if (topic && topic.text) {
+        const aiPrompt = `השאלה: "${question}"\n\nמידע רלוונטי מהפרופיל:\n${topic.text}`;
+        const aiText = await askOpenAI(aiPrompt);
+        if (aiText && aiText.trim()) {
+          finalText = aiText.trim();
+          console.log(`[ASK] used=topic+ai  topic="${topic.topic}" q="${question}"`);
+        }
+      }
+    }
+
+    // 3) פולבק מלא ל-AI אם עדיין אין מענה
+    if (!finalText || !finalText.trim()) {
       const aiText = await askOpenAI(question);
-      finalText = aiText || "לא מצאתי תשובה כרגע.";
+      finalText = (aiText && aiText.trim()) || "לא מצאתי תשובה כרגע.";
       console.log(`[ASK] used=openai  q="${question}"`);
-    } else {
+    } else if (!needFallback) {
       console.log(`[ASK] used=local  q="${question}"`);
     }
 

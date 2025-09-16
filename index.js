@@ -37,6 +37,7 @@ function answerQuestion(question) {
       const patterns = Array.isArray(item.patterns) ? item.patterns : [];
       for (const patt of patterns) {
         const p = normalize(patt);
+
         // התאמה טיפה סלחנית יותר: שוויון או "כולל"
         if (qNorm === p || qNorm.includes(p) || p.includes(qNorm)) {
           const text = (typeof item.answer === "string" && item.answer.trim())
@@ -55,6 +56,27 @@ function answerQuestion(question) {
 }
 
 module.exports = { answerQuestion };
+
+
+// שכבה אמצעית למענה AI
+function findTopicMatch(question) {
+  const qNorm = normalize(question);
+  if (Array.isArray(data.topics)) {
+    for (const item of data.topics) {
+      if (!item) continue;
+      const keys = Array.isArray(item.keys) ? item.keys : [];
+      for (const key of keys) {
+        const kNorm = normalize(key);
+        if (qNorm.includes(kNorm) || kNorm.includes(qNorm)) {
+          return item; // נחזיר את כל האובייקט (topic, text, keys)
+        }
+      }
+    }
+  }
+  return null;
+}
+
+module.exports = { answerQuestion, findTopicMatch };
 
 // בדיקה ידנית בטרמינל (אופציונלי)
 if (require.main === module) {
