@@ -174,16 +174,17 @@
     <div id="chatOverlay" class="overlay" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="chatTitle">
     <button class="close-btn" aria-label="Close chat" data-close-chat>&times;</button>
+    <button type="button" class="new-chat-btn" data-reset-chat>שיחה חדשה</button>
     <header class="chat-header">
       <h3 id="chatTitle">Chat • Moti's Mind</h3>
       <span class="status-dot" aria-hidden="true"></span>
     </header>
 
     <div class="chat-body">
-      <!-- Exemple For Designs-->
-      <div class="msg bot">היי, תשאל אותי כל מה שתרצה עלי, על הפרוייקטים שעשיתי ואפילו שאלות כלליות</div>
+    <div class="msg bot">היי, תשאל אותי כל מה שתרצה עלי, על הפרוייקטים שעשיתי ואפילו שאלות כלליות</div>
     </div>
-
+    <!-- NEW: מקום לבועות ההצעה -->
+    <div class="chat-suggestions" aria-live="polite"></div>
     <form class="chat-input" onsubmit="return false;">
       <input type="text" placeholder="Type a message…" aria-label="Type a message" />
       <button type="button" class="send-btn" disabled>Send</button>

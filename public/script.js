@@ -59,7 +59,9 @@ for (var i = 0; i < navLinks.length; i++) {
   const closeBtn = overlay.querySelector('[data-close-chat]');    
   const chatBody = overlay.querySelector('.chat-body');          
   const input = overlay.querySelector('.chat-input input');      
-  const sendBtn = overlay.querySelector('.send-btn');           
+  const sendBtn = overlay.querySelector('.send-btn');
+  const suggestionsBox = overlay.querySelector('.chat-suggestions'); 
+  const resetBtn = overlay.querySelector('[data-reset-chat]');   
   let lastFocused = null;
   let typingEl = null;
 
@@ -103,6 +105,33 @@ for (var i = 0; i < navLinks.length; i++) {
     }
   }
 
+  // NEW: רינדור בועות הצעה
+  function renderSuggestions(items = []) {
+  if (!suggestionsBox) return;
+  suggestionsBox.innerHTML = '';
+  if (!items.length) return;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'suggestions-wrap';
+
+  items.forEach(txt => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'suggestion-chip';
+    btn.textContent = txt;
+    btn.addEventListener('click', () => {
+      input.value = txt;
+      sendBtn.disabled = false;
+      sendBtn.classList.add('enabled');
+      // אם תרצה לשלוח אוטומטית:
+      // handleSend();
+    });
+    wrap.appendChild(btn);
+  });
+
+  suggestionsBox.appendChild(wrap);
+}
+
   async function askBot(userText) {
     try {
         const res = await fetch('/ask', {
@@ -112,9 +141,14 @@ for (var i = 0; i < navLinks.length; i++) {
             });
         if (res.ok) {
             const data = await res.json();
+        if (Array.isArray(data.suggestions)) {
+            renderSuggestions(data.suggestions);
+          } else {
+            renderSuggestions([]);
+          }
         if (data && typeof data.answer === 'string' && data.answer.trim()) {
             return data.answer.trim();
-            }
+          }
         }
     } catch (_) { /* ניפול לפתרון המקומי */ }
 
@@ -133,6 +167,7 @@ for (var i = 0; i < navLinks.length; i++) {
     input.focus();
 
     setTyping(true);
+    renderSuggestions([]); 
     const reply = await askBot(text);
     setTyping(false);
     appendMessage(reply, 'bot');
@@ -140,6 +175,20 @@ for (var i = 0; i < navLinks.length; i++) {
     sendBtn.disabled = !input.value.trim();
     if (input.value.trim()) sendBtn.classList.add('enabled');
   }
+
+  // : איפוס שיחה
+  async function resetConversation() {
+  const clientId = ensureClientId();
+  await fetch('/reset', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ clientId })
+  });
+  chatBody.innerHTML = '';
+  renderSuggestions([]);
+  appendMessage('התחלנו שיחה חדשה ✨', 'bot');
+  }
+  if (resetBtn) resetBtn.addEventListener('click', resetConversation);
 
   openers.forEach(btn => btn.addEventListener('click', openChat));
   if (closeBtn) closeBtn.addEventListener('click', closeChat);
@@ -165,13 +214,16 @@ for (var i = 0; i < navLinks.length; i++) {
   }
 })();
 
-// מחכה שהמקלדת תיפתח
-const input = document.querySelector('.chat-input input');
-input.addEventListener('focus', () => {
-  setTimeout(() => {
-    input.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }, 300); 
-});
+// שם משתנה שונה
+const kbInput = document.querySelector('.chat-input input');
+if (kbInput) {
+  kbInput.addEventListener('focus', () => {
+    setTimeout(() => {
+      kbInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 300);
+  });
+}
+
 
 
 

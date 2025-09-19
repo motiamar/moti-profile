@@ -539,6 +539,71 @@
       border-color: #1d4ed8;
     }
 
+  /* Suggegtions */
+  .chat-suggestions {
+    padding: 8px 12px;
+    border-top: 1px solid #eee;
+  }
+
+  .suggestions-wrap {
+    display: flex;
+    justify-content: center;  
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .suggestion-chip {
+    border: none;                      
+    background: #4da3ff;            
+    color: white;                     
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background 0.2s;
+    animation: float 3s ease-in-out infinite; 
+  }
+
+  .suggestion-chip:hover {
+    background: #338dff;              
+    transform: scale(1.05);
+  }
+
+  .suggestion-chip:active {
+    transform: scale(0.98);
+  }
+
+  /* flow anumation */
+  @keyframes float {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+
+  .new-chat-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #4da3ff, #7b61ff);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  padding: 10px 24px;
+  border-radius: 30px;
+  border: wheat;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  margin: 12px auto;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.new-chat-btn:hover {
+  background: linear-gradient(135deg, #338dff, #693cff);
+  transform: scale(1.07);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+
 
 
     /* Responsive Media Query CSS */
