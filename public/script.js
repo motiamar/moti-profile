@@ -45,6 +45,16 @@ for (var i = 0; i < navLinks.length; i++) {
 (function () {
   const overlay = document.getElementById('chatOverlay');        
   if (!overlay) return; 
+
+  function ensureClientId() {
+  let id = localStorage.getItem('clientId');
+  if (!id) {
+    id = crypto.randomUUID ? crypto.randomUUID() : (Date.now() + '-' + Math.random());
+    localStorage.setItem('clientId', id);
+  }
+  return id;
+}
+
   const openers = document.querySelectorAll('.open-chat-btn');    
   const closeBtn = overlay.querySelector('[data-close-chat]');    
   const chatBody = overlay.querySelector('.chat-body');          
@@ -98,7 +108,7 @@ for (var i = 0; i < navLinks.length; i++) {
         const res = await fetch('/ask', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ question: userText })
+            body: JSON.stringify({ question: userText, clientId: ensureClientId() })
             });
         if (res.ok) {
             const data = await res.json();
