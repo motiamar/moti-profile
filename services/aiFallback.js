@@ -1,6 +1,11 @@
 // services/aiFallback.js
-require('dotenv').config();
 const OpenAI = require('openai');
+
+// בדיקה מקדימה – אם אין מפתח, נדפיס שגיאה ברורה
+if (!process.env.OPENAI_API_KEY) {
+  console.error("❌ Missing OPENAI_API_KEY (set it in Render → Environment)");
+  // אפשר גם לזרוק שגיאה: throw new Error("Missing OPENAI_API_KEY");
+}
 
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -11,7 +16,7 @@ async function askOpenAI(input) {
   if (Array.isArray(input?.messages)) {
     messages = input.messages;
   } else {
-    // אחרת נניח שזה string ונעטוף אותו כהודעת user
+    // אחרת נניח שזה string ונעטוף כהודעת user
     messages = [
       { role: "system", content: "You are Moti's portfolio bot. Keep answers concise; add links only if asked." },
       { role: "user", content: String(input || "") }
