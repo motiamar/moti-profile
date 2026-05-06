@@ -657,7 +657,7 @@
           ),
           url("images/Background.png");
         background-attachment: scroll, scroll;
-        background-position: center center, 85% top;
+        background-position: center center, 78% 15%;
         background-size: auto, cover;
         background-repeat: no-repeat, no-repeat;
       }
