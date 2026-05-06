@@ -647,7 +647,12 @@
 
     @media (max-width: 750px) {
       .home {
-        background: #fff; 
+        background-color: #fff;
+        background-image: url("images/Background.png");
+        background-attachment: scroll;
+        background-position: right center;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
       }
        nav .navbar .menu{
         position: absolute;
