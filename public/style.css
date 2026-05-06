@@ -489,7 +489,7 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.45);
       border-radius: 18px;
       display: grid;
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto auto 1fr auto auto;
       overflow: hidden;
       animation: pop 180ms ease-out;
     }
@@ -790,6 +790,21 @@
       .contact .text{
       width: 100%;
       }
+      /* Mobile chat — keyboard-safe layout */
+      .overlay {
+        padding: 0;
+        align-items: flex-end;
+        background: rgba(15, 18, 22, 0.98);
+      }
+      .modal {
+        max-width: 100%;
+        border-radius: 16px 16px 0 0;
+        max-height: 88vh;
+        max-height: 88svh;
+      }
+      .chat-input {
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+      }
     }
 
     @media (max-width: 510px){
@@ -799,7 +814,6 @@
       .home .text .text-three{
           font-size: 33px;
       }
-      .modal { max-height: 92vh; border-radius: 14px; }
       .msg { max-width: 92%; }
     }
 

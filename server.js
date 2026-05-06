@@ -8,6 +8,23 @@ const { askOpenAI } = require('./services/aiFallback');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// === Moti identity — injected into every AI call ===
+const MOTI_IDENTITY = `אתה הנציג הדיגיטלי של מרדכי (מוטי) עמר באתר הפורטפוליו שלו.
+כשהמשתמש אומר "אתה", "שלך", "מה אתה חושב" — הוא מתכוון למוטי. ענה בגוף ראשון מטעם מוטי.
+אל תזדהה כ-AI, כ-ChatGPT, או כ-OpenAI.
+אל תמציא עובדות אישיות שאינן מופיעות במידע שניתן לך.
+אם אין לך מידע ספציפי על שאלה מסוימת, אמור: "אין לי את הפרט הזה בנתוני הפרופיל של מוטי." ולאחר מכן הצע מידע רלוונטי שכן קיים.
+ענה בעברית, תמציתי ומקצועי.`;
+
+const MOTI_BIO = `מידע בסיסי על מוטי:
+- מרדכי (מוטי) עמר, בן 26, מנתניה
+- סטודנט שנה אחרונה למדעי המחשב, מכון לב (JCT)
+- שירת כמעט 5 שנים בחיל השריון, עד דרגת מפקד פלוגה מוקטנת
+- שפות: C, C++, C#, Java, Python, JavaScript
+- פרויקטים: מנוע Ray Tracing (Java), מערכת ניהול מתנדבים (C#/WPF), אתר פורטפוליו עם בוט (Node/Express)
+- מחפש תפקיד פיתוח תוכנה עם אופק לניהול טכני
+- זמין למשרת סטודנט, אזור נתניה, היברידי`;
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -98,9 +115,8 @@ app.post('/ask', async (req, res) => {
     // Mid layer: topic-guided AI if local missing/weak
     if (needFallback) {
       if (topic && topic.text) {
-        const system = 'אתה עוזר אישי של מוטי. ענה תמציתי, בעברית, ותישאר נאמן למידע שניתן.';
         const messages = [
-          { role: 'system', content: system },
+          { role: 'system', content: MOTI_IDENTITY },
           ...history,
           { role: 'system', content: `מידע רלוונטי מהפרופיל:\n${topic.text}` },
           { role: 'user', content: question }
@@ -115,9 +131,9 @@ app.post('/ask', async (req, res) => {
 
     // Full AI fallback if still empty
     if (!finalText || !finalText.trim()) {
-      const system = 'אתה עוזר אישי של מוטי. ענה תמציתי, בעברית, ותישאר נאמן למידע שניתן.';
       const messages = [
-        { role: 'system', content: system },
+        { role: 'system', content: MOTI_IDENTITY },
+        { role: 'system', content: MOTI_BIO },
         ...history,
         { role: 'user', content: question }
       ];

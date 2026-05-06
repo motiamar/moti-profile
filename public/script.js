@@ -262,15 +262,6 @@ document.querySelectorAll('.projects .boxes .box').forEach(card => {
   });
 });
 
-// שם משתנה שונה
-const kbInput = document.querySelector('.chat-input input');
-if (kbInput) {
-  kbInput.addEventListener('focus', () => {
-    setTimeout(() => {
-      kbInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 300);
-  });
-}
 
 
 
