@@ -23,8 +23,11 @@
     background: #F1F1F1;
   }
   ::-webkit-scrollbar-thumb{
-    background: #6e93f7;
+    background: transparent;
     border-radius: 12px;
+  }
+  html.is-scrolling ::-webkit-scrollbar-thumb{
+    background: #6e93f7;
   }
   ::-webkit-scrollbar-thumb:hover{
     background: #4070F4;

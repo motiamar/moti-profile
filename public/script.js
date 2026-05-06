@@ -190,7 +190,10 @@ for (var i = 0; i < navLinks.length; i++) {
   }
   if (resetBtn) resetBtn.addEventListener('click', resetConversation);
 
-  openers.forEach(btn => btn.addEventListener('click', openChat));
+  openers.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openChat();
+  }));
   if (closeBtn) closeBtn.addEventListener('click', closeChat);
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closeChat(); });
   document.addEventListener('keydown', (e) => {
@@ -213,6 +216,16 @@ for (var i = 0; i < navLinks.length; i++) {
     sendBtn.addEventListener('click', handleSend);
   }
 })();
+
+// Auto-hide scrollbar
+let scrollHideTimer;
+window.addEventListener('scroll', () => {
+  document.documentElement.classList.add('is-scrolling');
+  clearTimeout(scrollHideTimer);
+  scrollHideTimer = setTimeout(() => {
+    document.documentElement.classList.remove('is-scrolling');
+  }, 1000);
+}, { passive: true });
 
 // שם משתנה שונה
 const kbInput = document.querySelector('.chat-input input');
