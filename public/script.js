@@ -227,6 +227,41 @@ window.addEventListener('scroll', () => {
   }, 1000);
 }, { passive: true });
 
+// 3D card tilt — desktop (pointer: fine) only
+if (window.matchMedia('(pointer: fine)').matches) {
+  document.querySelectorAll('.projects .boxes .box').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      const rotX = ((y - cy) / cy) * -10;
+      const rotY = ((x - cx) / cx) *  10;
+      card.style.transform =
+        `perspective(700px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.03,1.03,1.03)`;
+      card.style.setProperty('--mx', `${(x / rect.width)  * 100}%`);
+      card.style.setProperty('--my', `${(y / rect.height) * 100}%`);
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+// 360° spin on click — all project cards
+document.querySelectorAll('.projects .boxes .box').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.project-link')) return;
+    if (card.classList.contains('card-spin')) return;
+    card.style.transform = '';
+    card.classList.add('card-spin');
+    card.addEventListener('animationend', () => {
+      card.classList.remove('card-spin');
+    }, { once: true });
+  });
+});
+
 // שם משתנה שונה
 const kbInput = document.querySelector('.chat-input input');
 if (kbInput) {
