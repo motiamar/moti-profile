@@ -647,12 +647,33 @@
 
     @media (max-width: 750px) {
       .home {
-        background-color: #fff;
+        background-color: #eef1fb;
         background-image: url("images/Background.png");
         background-attachment: scroll;
-        background-position: right center;
-        background-size: auto 100%;
+        background-position: center top;
+        background-size: cover;
         background-repeat: no-repeat;
+        position: relative;
+      }
+      .home::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 25%,
+          rgba(238, 241, 251, 0.82) 55%,
+          #eef1fb 72%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .home .home-content {
+        position: relative;
+        z-index: 1;
+        justify-content: flex-end;
+        padding-bottom: 56px;
+        width: 92%;
       }
        nav .navbar .menu{
         position: absolute;
@@ -684,10 +705,13 @@
         display: block;
       }
       .home .text .text-two{
-        font-size: 65px;
+        font-size: 50px;
       }
       .home .text .text-three{
-        font-size: 35px;
+        font-size: 26px;
+      }
+      .home .text .text-four{
+        font-size: 19px;
       }
       .skills .skill-details{
         flex-direction: column;
