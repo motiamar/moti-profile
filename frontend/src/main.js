@@ -1,5 +1,16 @@
 import './style.css';
 
+// === Dynamic viewport height (shrinks when mobile keyboard opens) ===
+function updateAppHeight() {
+  const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  document.documentElement.style.setProperty('--app-height', `${h}px`);
+}
+updateAppHeight();
+window.addEventListener('resize', updateAppHeight, { passive: true });
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', updateAppHeight, { passive: true });
+}
+
 // === Navigation ===
 const menuBtn = document.querySelector('.menu-btn');
 const cancelBtn = document.querySelector('.cancel-btn');
