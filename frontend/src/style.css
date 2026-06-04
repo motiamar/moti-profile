@@ -387,6 +387,17 @@
       background: #FFF;
       color: #4070F4;
     }
+    /* ParkMe icon — rounded square with white "P" and polished shadow */
+    .projects .boxes .box .icon.icon-parkme {
+      border-radius: 12px;
+      font-size: 26px;
+      font-weight: 700;
+      font-family: 'Ubuntu', sans-serif;
+      box-shadow: 0 4px 14px rgba(64, 112, 244, 0.35);
+    }
+    .projects .boxes .box:hover .icon.icon-parkme {
+      box-shadow: 0 4px 14px rgba(64, 112, 244, 0.12);
+    }
     .projects .boxes .box:hover .topic{
       color: #FFF;
     }
